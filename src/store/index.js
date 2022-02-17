@@ -1,12 +1,8 @@
 import { createStore } from 'vuex'
+import dadata from './modules/dadata'
 
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+    modules: {
+        dadata
+    }
 })
