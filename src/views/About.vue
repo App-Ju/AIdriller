@@ -1,5 +1,22 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <hr>
+    <GuideAboutPage/>
+    <hr>
+    <LibAboutPage/>
   </div>
 </template>
+
+<script>
+
+import GuideAboutPage from "@/components/GuideAboutPage";
+import LibAboutPage from "@/components/LibAboutPage";
+export default {
+  name: 'About',
+
+  components: {
+    LibAboutPage,
+    GuideAboutPage,
+  },
+};
+</script>
