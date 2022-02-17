@@ -1,5 +1,5 @@
 <template>
-  <div class="header__layout">
+  <div>
     <Header/>
     <router-view/>
   </div>
@@ -13,7 +13,3 @@ export default {
   components: {Header}
 }
 </script>
-
-<style scoped>
-
-</style>

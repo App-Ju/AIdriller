@@ -1,15 +1,18 @@
 <template>
   <div class="header__wrapper">
-    <v-btn
-        @click="$router.push('/')"
-    >
-      About
-    </v-btn>
-    <v-btn
-        @click="$router.push('/address-search')"
-    >
-      Address Search
-    </v-btn>
+    <div class="header__container container">
+      <div class="header__logo">
+        <img :src="require('@/assets/header_logo.png')" alt="#">
+      </div>
+      <nav class="header__nav">
+        <router-link to="/" class="header__link">
+          About
+        </router-link>
+        <router-link to="/address-search" class="header__link">
+          Address Search
+        </router-link>
+      </nav>
+    </div>
   </div>
 </template>
 
@@ -20,5 +23,42 @@ export default {
 </script>
 
 <style scoped>
+.header__wrapper {
+  background: #9cd9dc;
+  font-size: 22px;
+  font-weight: bold;
+}
 
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.header__logo img {
+  width: 50px;
+  object-fit: contain;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-around;
+  width: 70%;
+}
+
+a:visited, :link {
+  color: #333333;
+}
+
+a:hover {
+  color: #c74545;
+  transform: scale(1.1);
+  transition-duration: 0.3s;
+}
+
+a:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
 </style>

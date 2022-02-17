@@ -1,8 +1,6 @@
 <template>
   <div>
-    <hr>
     <GuideAboutPage/>
-    <hr>
     <LibAboutPage/>
   </div>
 </template>
