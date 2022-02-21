@@ -1,17 +1,18 @@
 <template>
-  <div>
-    <AddressSearchPage/>
-  </div>
+	<div>
+		<AddressSearchPage/>
+	</div>
 </template>
 
 <script>
 
 import AddressSearchPage from "@/components/AddressSearchPage";
+
 export default {
-  name: 'AddressSearch',
-  
-  components: {
-    AddressSearchPage
-  },
+	name: 'AddressSearch',
+
+	components: {
+		AddressSearchPage
+	},
 };
 </script>

@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <Header/>
-    <router-view/>
-  </div>
+	<div>
+		<Header/>
+		<router-view/>
+	</div>
 </template>
 
 <script>
 import Header from "@/components/Header";
 
 export default {
-  name: "HeaderLayout",
-  components: {Header}
+	name: "HeaderLayout",
+	components: {Header}
 }
 </script>
