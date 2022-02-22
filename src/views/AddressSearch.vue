@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<AddressSearchPage/>
-	</div>
+	<AddressSearchPage/>
 </template>
 
 <script>

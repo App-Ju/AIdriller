@@ -1,8 +1,6 @@
 <template>
-	<div>
-		<GuideAboutPage/>
-		<LibAboutPage/>
-	</div>
+	<GuideAboutPage/>
+	<LibAboutPage/>
 </template>
 
 <script>

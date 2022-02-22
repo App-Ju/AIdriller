@@ -58,7 +58,17 @@ export default {
 	computed: {
 		...mapGetters(['getResult']),
 		result: function () {
-			return this.getResult
+			console.log(this.getResult)
+			return [
+				{['Zip(Индекс)']: this.getResult.postal_code ? this.getResult.postal_code : 'Нет совпадений'},
+				{
+					['City(Город)']: this.getResult.city ? this.getResult.city
+						: this.getResult.region ? this.getResult.region : 'Нет совпадений'
+				},
+				{['Street(Улица)']: this.getResult.street ? this.getResult.street : 'Нет совпадений'},
+				{['House(Дом)']: this.getResult.house ? this.getResult.house : 'Нет совпадений'},
+				{['Flat(Квартира)']: this.getResult.flat ? this.getResult.flat : 'Нет совпадений'}
+			]
 		}
 	},
 	methods: {
