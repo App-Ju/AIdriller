@@ -52,7 +52,7 @@ a:visited, :link {
 }
 
 a:hover {
-	color: #c74545;
+	color: #7f45c7;
 	transform: scale(1.1);
 	transition-duration: 0.3s;
 }
