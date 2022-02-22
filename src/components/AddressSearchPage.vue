@@ -23,74 +23,23 @@
 		v-else
 		class="search__result container"
 	>
-		<v-row>
+		<v-row v-for="(obj, key) in result"
+		       :key="key">
 			<v-col
+				v-for="(value, key) in obj"
+				:key="key"
 				cols="3"
 				class="result__col ml-auto"
 			>
-				Zip(Индекс)
+				{{ key }}
 			</v-col>
 			<v-col
+				v-for="(value, key) in obj"
+				:key="key"
 				cols="3"
 				class="result__col mr-auto"
 			>
-				{{ getResult[0].postal_code || 'Нет совпадений' }}
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col
-				cols="3"
-				class="result__col ml-auto"
-			>
-				City(Город)
-			</v-col>
-			<v-col
-				cols="3"
-				class="result__col mr-auto"
-			>
-				{{ getResult[0].city || getResult[0].region || 'Нет совпадений' }}
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col
-				cols="3"
-				class="result__col ml-auto"
-			>
-				Street(Улица)
-			</v-col>
-			<v-col
-				cols="3"
-				class="result__col mr-auto"
-			>
-				{{ getResult[0].street || 'Нет совпадений' }}
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col
-				cols="3"
-				class="result__col ml-auto"
-			>
-				House(Дом)
-			</v-col>
-			<v-col
-				cols="3"
-				class="result__col mr-auto"
-			>
-				{{ getResult[0].house || 'Нет совпадений' }}
-			</v-col>
-		</v-row>
-		<v-row>
-			<v-col
-				cols="3"
-				class="result__col ml-auto"
-			>
-				Flat(Квартира)
-			</v-col>
-			<v-col
-				cols="3"
-				class="result__col mr-auto"
-			>
-				{{ getResult[0].flat || 'Нет совпадений' }}
+				{{ value }}
 			</v-col>
 		</v-row>
 	</v-container>
@@ -103,20 +52,25 @@ export default {
 	name: "AddressSearchPage",
 	data() {
 		return {
-			query: ''
+			query: '',
 		}
 	},
-	computed: mapGetters(['getResult']),
+	computed: {
+		...mapGetters(['getResult']),
+		result: function () {
+			return this.getResult
+		}
+	},
 	methods: {
 		...mapActions(['requestAddress']),
 		push() {
-			console.log('q', this.query)
+			console.log('res', this.result)
 			if (this.query.trim()) {
 				this.requestAddress(this.query)
 			}
 			this.query = ''
 		}
-	}
+	},
 }
 </script>
 

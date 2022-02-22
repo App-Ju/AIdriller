@@ -3,8 +3,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 const routes = [
     {
         path: '/',
-        name: 'HeaderLayout',
-        component: () => import('../views/HeaderLayout.vue'),
+        name: 'MainLayout',
+        component: () => import('../views/MainLayout.vue'),
         children: [
             {
                 path: '',

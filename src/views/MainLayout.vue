@@ -9,7 +9,7 @@
 import Header from "@/components/Header";
 
 export default {
-	name: "HeaderLayout",
+	name: "MainLayout",
 	components: {Header}
 }
 </script>
