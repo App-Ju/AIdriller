@@ -1,4 +1,11 @@
-# dadata
+# Dadata
+```
+для корректной работы приложения необходимо посетить 
+
+https://cors-anywhere.herokuapp.com/corsdemo
+
+и активировать демо режим для работы прокси сервера 
+```
 
 ## Project setup
 ```
