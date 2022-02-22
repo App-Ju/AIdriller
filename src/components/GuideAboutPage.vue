@@ -3,10 +3,6 @@
 		<AddressSearchPage/>
 		<div class="about__cover"/>
 	</v-card>
-	<div class="container mt-6">
-		Отобразить вид С пояснениями к каждому контролу по его функциональности.
-		Вывести текстовое описание того, как работает поиск в целом.
-	</div>
 </template>
 
 <script>
@@ -37,9 +33,18 @@ span {
 	font-size: 24px;
 }
 
+.about__cover:after {
+	content: 'Разбивает адрес из строки по отдельным полям согласно КЛАДР/ФИАС. Определяет почтовый индекс. Отобажает ресультат в таблице с полями: индекс, город, улица, дом, квартира';
+	width: 70%;
+	position: absolute;
+	left: 15%;
+	top: 3%;
+	text-align: center;
+}
+
 :deep(.search__form) {
 
-	.search__input:before {
+	.tooltip__input:before {
 		content: '';
 		position: absolute;
 		width: 20px;
@@ -52,15 +57,17 @@ span {
 		transform: rotate(135deg);
 	}
 
-	.search__input:after {
+	.tooltip__input:after {
 		font-size: 22px;
+		width: 30%;
 		content: 'Поле для ввода адреса в свободной форме';
 		position: absolute;
 		top: 65px;
 		left: 40px;
+
 	}
 
-	.search__btn:before {
+	.tooltip__btn:before {
 		content: '';
 		position: absolute;
 		width: 20px;
@@ -73,7 +80,7 @@ span {
 		transform: rotate(45deg);
 	}
 
-	.search__btn:after {
+	.tooltip__btn:after {
 		font-size: 22px;
 		content: 'При нажатии кнопки запускается поиск адреса соответствующего введеному значению';
 		position: absolute;
@@ -83,7 +90,7 @@ span {
 
 }
 
-:deep(.search__previously:before) {
+:deep(.tooltip__result:before) {
 	content: '';
 	position: absolute;
 	width: 20px;
@@ -91,17 +98,18 @@ span {
 	box-sizing: border-box;
 	border-left: 6px solid #337AB7;
 	border-bottom: 6px solid #337AB7;
-	top: -35px;
-	left: 10px;
-	transform: rotate(-45deg);
+	top: 3px;
+	left: 102%;
+	transform: rotate(45deg);
 }
 
-:deep(.search__previously:after) {
+:deep(.tooltip__result:after) {
 	font-size: 20px;
+	width: 35%;
 	content: 'Здесь отображается результат поиска';
 	position: absolute;
-	top: -30px;
-	left: 40px;
+	top: 0;
+	left: 108%;
 }
 
 </style>

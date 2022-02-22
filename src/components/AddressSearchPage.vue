@@ -4,16 +4,16 @@
 			v-model="query"
 			label="Введите адрес"
 			@keydown.enter.prevent="push"
-			class="search__input"
+			class="search__input tooltip__input"
 		></v-text-field>
-		<div class="search__btn">
+		<div class="search__btn tooltip__btn">
 			<v-btn @click="push">
 				Поиск
 			</v-btn>
 		</div>
 	</form>
 	<div
-		class="search__previously"
+		class="search__previously tooltip__result"
 		v-if="getResult.length < 1"
 	>
 		Введите адрес и нажмите кнопку.
@@ -21,14 +21,14 @@
 
 	<v-container
 		v-else
-		class="search__result container"
+		class="search__result tooltip__result container"
 	>
 		<v-row v-for="(obj, key) in result"
 		       :key="key">
 			<v-col
 				v-for="(value, key) in obj"
 				:key="key"
-				cols="3"
+				cols="6"
 				class="result__col ml-auto"
 			>
 				{{ key }}
@@ -36,7 +36,7 @@
 			<v-col
 				v-for="(value, key) in obj"
 				:key="key"
-				cols="3"
+				cols="6"
 				class="result__col mr-auto"
 			>
 				{{ value }}
@@ -103,7 +103,9 @@ export default {
 }
 
 .search__result {
+	position: relative;
 	font-size: 18px;
+	width: 30%;
 }
 
 .result__col {
