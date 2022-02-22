@@ -14,7 +14,7 @@
 	</form>
 	<div
 		class="search__previously tooltip__result"
-		v-if="getResult.length < 1"
+		v-if="!getRequestCompleted"
 	>
 		Введите адрес и нажмите кнопку.
 	</div>
@@ -26,20 +26,16 @@
 		<v-row v-for="(obj, key) in result"
 		       :key="key">
 			<v-col
-				v-for="(value, key) in obj"
-				:key="key"
 				cols="6"
 				class="result__col ml-auto"
 			>
-				{{ key }}
+				{{ obj.title }}
 			</v-col>
 			<v-col
-				v-for="(value, key) in obj"
-				:key="key"
 				cols="6"
 				class="result__col mr-auto"
 			>
-				{{ value }}
+				{{ obj.value || 'Нет совпадений' }}
 			</v-col>
 		</v-row>
 	</v-container>
@@ -56,25 +52,36 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['getResult']),
+		...mapGetters(['getResult', 'getRequestCompleted']),
 		result: function () {
-			console.log(this.getResult)
-			return [
-				{['Zip(Индекс)']: this.getResult.postal_code ? this.getResult.postal_code : 'Нет совпадений'},
+			const result = [
 				{
-					['City(Город)']: this.getResult.city ? this.getResult.city
-						: this.getResult.region ? this.getResult.region : 'Нет совпадений'
+					title: 'Zip(Индекс)',
+					value: this.getResult.postal_code,
 				},
-				{['Street(Улица)']: this.getResult.street ? this.getResult.street : 'Нет совпадений'},
-				{['House(Дом)']: this.getResult.house ? this.getResult.house : 'Нет совпадений'},
-				{['Flat(Квартира)']: this.getResult.flat ? this.getResult.flat : 'Нет совпадений'}
+				{
+					title: 'City(Город)',
+					value: this.getResult.cityOrRegion,
+				},
+				{
+					title: 'Street(Улица)',
+					value: this.getResult.street,
+				},
+				{
+					title: 'House(Дом)',
+					value: this.getResult.house,
+				},
+				{
+					title: 'Flat(Квартира)',
+					value: this.getResult.flat,
+				},
 			]
+			return result
 		}
 	},
 	methods: {
 		...mapActions(['requestAddress']),
 		push() {
-			console.log('res', this.result)
 			if (this.query.trim()) {
 				this.requestAddress(this.query)
 			}

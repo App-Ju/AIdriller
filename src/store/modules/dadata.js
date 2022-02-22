@@ -10,6 +10,8 @@ export default {
                 context.commit('updateResult', resultReq.data[0])
             } catch (error) {
                 console.log(error)
+                context.commit('clearResult')
+
             }
 
         }
@@ -17,14 +19,29 @@ export default {
     mutations: {
         updateResult(state, result) {
             state.result = result
+            state.requestCompleted = true
+        },
+        clearResult(state) {
+            state.result = {}
+            state.requestCompleted = false
         }
     },
     state: {
-        result: [],
+        result: {},
+        requestCompleted: false
     },
     getters: {
         getResult(state) {
-            return state.result
+            return {
+                postal_code: state.result.postal_code,
+                cityOrRegion: state.result.city || state.result.region,
+                street: state.result.street,
+                house: state.result.house,
+                flat: state.result.flat,
+            }
+        },
+        getRequestCompleted(state) {
+            return state.requestCompleted
         }
     }
 }
