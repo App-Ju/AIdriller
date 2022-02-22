@@ -77,7 +77,8 @@ export default {
 <style scoped>
 
 .search__form {
-	margin: 10% auto 5% auto;
+	margin-top: 10%;
+	margin-bottom: 5%;
 }
 
 .search__input {

@@ -96,6 +96,7 @@ export default {
 <style lang="scss" scoped>
 .lib__wrapper {
 	width: 80%;
+	margin-bottom: 60px;
 }
 
 .lib__title {
