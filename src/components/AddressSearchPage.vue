@@ -5,9 +5,13 @@
 			label="Введите адрес"
 			@keydown.enter.prevent="push"
 			class="search__input tooltip__input"
+			:disabled="isDisabled"
 		></v-text-field>
 		<div class="search__btn tooltip__btn">
-			<v-btn @click="push">
+			<v-btn
+				@click="push"
+				:disabled="isDisabled"
+			>
 				Поиск
 			</v-btn>
 		</div>
@@ -18,7 +22,6 @@
 	>
 		Введите адрес и нажмите кнопку.
 	</div>
-
 	<v-container
 		v-else
 		class="search__result tooltip__result container"
@@ -42,7 +45,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
 	name: "AddressSearchPage",
@@ -54,7 +57,7 @@ export default {
 	computed: {
 		...mapGetters(['getResult', 'getRequestCompleted']),
 		result: function () {
-			const result = [
+			return [
 				{
 					title: 'Zip(Индекс)',
 					value: this.getResult.postal_code,
@@ -76,7 +79,6 @@ export default {
 					value: this.getResult.flat,
 				},
 			]
-			return result
 		}
 	},
 	methods: {
@@ -86,8 +88,9 @@ export default {
 				this.requestAddress(this.query)
 			}
 			this.query = ''
-		}
+		},
 	},
+	props: ['isDisabled']
 }
 </script>
 
