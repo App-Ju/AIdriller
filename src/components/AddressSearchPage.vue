@@ -3,8 +3,8 @@
 		class="tooltip__about"
 		:hidden="!showHint"
 	>
-		Разбивает адрес из строки по отдельным полям согласно КЛФДР/ФИАС. Определяет почтовый индекс. Отображает
-		результат в таблице с полями: нидекс, город, улица, дом, квартира
+		Разбивает запрос из строки по отдельным полям(от региона до квартиры) и ищет совпадения. Автоматически
+		исправляет ошибки в запросе. Определяет почтовый индекс. Отображает в таблице первые 10 адресов совпавших с запросом.
 	</div>
 	<form class="search__form container">
 		<v-text-field
@@ -20,7 +20,7 @@
 			:hidden="!showHint"
 		>
 			<img :src="require('@/assets/arrow.png')" alt="#">
-			<span>  Поле для ввода адреса в свободной форме</span>
+			<span>  Поле ввода адреса для запроса, в свободной форме</span>
 		</div>
 		<div class="search__btn">
 			<v-btn
@@ -34,7 +34,7 @@
 				:hidden="!showHint"
 			>
 				<img :src="require('@/assets/arrow.png')" alt="#">
-				<span>  При нажатии кнопки запускается поиск адреса соответствующего введеному значению</span>
+				<span>  При нажатии кнопки запускается поиск адресов соответствующего введеному запросу</span>
 			</div>
 		</div>
 	</form>
@@ -69,7 +69,7 @@
 		:hidden="!showHint"
 	>
 		<img :src="require('@/assets/arrow.png')" alt="#">
-		<span>  Здесь отображается результат поиска</span>
+		<span>  Здесь отображается результат поиска, первые 10 совпадений</span>
 	</div>
 </template>
 
@@ -214,10 +214,10 @@ export default {
 .tooltip__result {
 	position: relative;
 	font-size: 22px;
-	width: 30%;
+	width: 50%;
 	height: 0;
 	top: 0.5rem;
-	left: 26%;
+	left: 35%;
 
 	img {
 		position: relative;
