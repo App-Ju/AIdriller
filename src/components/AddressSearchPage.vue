@@ -1,30 +1,52 @@
 <template>
+	<div
+		class="tooltip__about"
+		:hidden="!showHint"
+	>
+		Разбивает адрес из строки по отдельным полям согласно КЛФДР/ФИАС. Определяет почтовый индекс. Отображает
+		результат в таблице с полями: нидекс, город, улица, дом, квартира
+	</div>
 	<form class="search__form container">
 		<v-text-field
 			v-model="query"
 			label="Введите адрес"
 			@keydown.enter.prevent="push"
-			class="search__input tooltip__input"
-			:disabled="isDisabled"
-		></v-text-field>
-		<div class="search__btn tooltip__btn">
+			class="search__input"
+			:disabled="showHint"
+		>
+		</v-text-field>
+		<div
+			class="tooltip__input"
+			:hidden="!showHint"
+		>
+			<img :src="require('@/assets/arrow.png')" alt="#">
+			<span>  Поле для ввода адреса в свободной форме</span>
+		</div>
+		<div class="search__btn">
 			<v-btn
 				@click="push"
-				:disabled="isDisabled"
+				:disabled="showHint"
 			>
 				Поиск
 			</v-btn>
+			<div
+				class="tooltip__btn"
+				:hidden="!showHint"
+			>
+				<img :src="require('@/assets/arrow.png')" alt="#">
+				<span>  При нажатии кнопки запускается поиск адреса соответствующего введеному значению</span>
+			</div>
 		</div>
 	</form>
 	<div
-		class="search__previously tooltip__result"
+		class="search__previously"
 		v-if="!getRequestCompleted"
 	>
 		Введите адрес и нажмите кнопку.
 	</div>
 	<v-container
 		v-else
-		class="search__result tooltip__result container"
+		class="search__result container"
 	>
 		<v-row v-for="(obj, key) in result"
 		       :key="key">
@@ -42,6 +64,13 @@
 			</v-col>
 		</v-row>
 	</v-container>
+	<div
+		class="tooltip__result"
+		:hidden="!showHint"
+	>
+		<img :src="require('@/assets/arrow.png')" alt="#">
+		<span>  Здесь отображается результат поиска</span>
+	</div>
 </template>
 
 <script>
@@ -90,11 +119,22 @@ export default {
 			this.query = ''
 		},
 	},
-	props: ['isDisabled']
+	props: ['showHint']
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.tooltip__about {
+	position: relative;
+	font-size: 22px;
+	width: 70%;
+	height: 0;
+	top: 2rem;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 120%;
+}
 
 .search__form {
 	margin-top: 10%;
@@ -107,10 +147,43 @@ export default {
 	margin: 0 auto;
 }
 
+.tooltip__input {
+	position: relative;
+	font-size: 22px;
+	width: 30%;
+	height: 0;
+	top: -2rem;
+	left: 11%;
+
+	img {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		object-fit: contain;
+		top: -3px;
+	}
+}
+
 .search__btn {
 	position: relative;
-	display: block;
+	display: flex;
 	left: 45%;
+}
+
+.tooltip__btn {
+	position: relative;
+	font-size: 22px;
+	width: 30%;
+	height: 0;
+	top: 0.5rem;
+	left: 1%;
+
+	img {
+		width: 30px;
+		height: 30px;
+		object-fit: contain;
+		transform: rotate(-90deg);
+	}
 }
 
 .search__previously {
@@ -136,6 +209,23 @@ export default {
 	border-bottom: 1px solid;
 	padding: 10px 0 0 10px;
 	margin-bottom: 10px;
+}
+
+.tooltip__result {
+	position: relative;
+	font-size: 22px;
+	width: 30%;
+	height: 0;
+	top: 0.5rem;
+	left: 26%;
+
+	img {
+		position: relative;
+		width: 30px;
+		height: 30px;
+		object-fit: contain;
+		top: -3px;
+	}
 }
 
 </style>

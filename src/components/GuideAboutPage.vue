@@ -1,6 +1,6 @@
 <template>
 	<v-card class="about__guide" >
-		<AddressSearchPage :isDisabled="disableForm"/>
+		<AddressSearchPage :showHint="enableHintMode"/>
 	</v-card>
 </template>
 
@@ -10,7 +10,7 @@ import AddressSearchPage from "@/components/AddressSearchPage";
 export default {
 	name: "GuideAboutPage",	data() {
 		return {
-			disableForm: true
+			enableHintMode: true
 		}
 	},
 	components: {AddressSearchPage},
@@ -27,82 +27,5 @@ span {
 	transform: scale(0.65);
 	padding-bottom: 3%;
 }
-
-//:deep(.search__form) {
-//	.search__input {
-//		pointer-events: none;
-//	}
-//
-//	.v-input {
-//		tab-index: '-1';
-//	}
-//}
-//	.tooltip__input:before {
-//		content: '';
-//		position: absolute;
-//		width: 20px;
-//		height: 20px;
-//		box-sizing: border-box;
-//		border-left: 6px solid #337AB7;
-//		border-bottom: 6px solid #337AB7;
-//		top: 67px;
-//		left: 10px;
-//		transform: rotate(135deg);
-//	}
-//
-//	.tooltip__input:after {
-//		font-size: 22px;
-//		width: 30%;
-//		content: 'Поле для ввода адреса в свободной форме';
-//		position: absolute;
-//		top: 65px;
-//		left: 40px;
-//
-//	}
-//
-//	.tooltip__btn:before {
-//		content: '';
-//		position: absolute;
-//		width: 20px;
-//		height: 20px;
-//		box-sizing: border-box;
-//		border-left: 6px solid #337AB7;
-//		border-bottom: 6px solid #337AB7;
-//		top: 8px;
-//		left: 100px;
-//		transform: rotate(45deg);
-//	}
-//
-//	.tooltip__btn:after {
-//		font-size: 22px;
-//		content: 'При нажатии кнопки запускается поиск адреса соответствующего введеному значению';
-//		position: absolute;
-//		left: 120px;
-//		width: 45%;
-//	}
-//
-//}
-//
-//:deep(.tooltip__result:before) {
-//	content: '';
-//	position: absolute;
-//	width: 20px;
-//	height: 20px;
-//	box-sizing: border-box;
-//	border-left: 6px solid #337AB7;
-//	border-bottom: 6px solid #337AB7;
-//	top: 3px;
-//	left: 102%;
-//	transform: rotate(45deg);
-//}
-//
-//:deep(.tooltip__result:after) {
-//	font-size: 20px;
-//	width: 35%;
-//	content: 'Здесь отображается результат поиска';
-//	position: absolute;
-//	top: 0;
-//	left: 108%;
-//}
 
 </style>
