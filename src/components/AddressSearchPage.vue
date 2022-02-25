@@ -4,8 +4,7 @@
 		:hidden="!showHint"
 	>
 		Разбивает запрос из строки по отдельным полям(от региона до квартиры) и ищет совпадения. Автоматически
-		исправляет ошибки в запросе. Сортрует совпавшие адреса по мере удаления, определяет город по IP. Отображает в
-		таблице первые 10 совпадений.
+		исправляет ошибки в запросе. Отображает в таблице первые 10 совпадений.
 	</div>
 	<form class="search__form container">
 		<v-text-field
@@ -49,21 +48,21 @@
 		v-else
 		class="search__result container"
 	>
-		<v-row v-for="(obj, key) in result"
-		       :key="key">
-			<v-col
-				cols="6"
-				class="result__col ml-auto"
-			>
+		<v-col
+			v-for="(obj, key) in result"
+			:key="key"
+		>
+			<v-row class="result__col">
 				{{ obj.title }}
-			</v-col>
-			<v-col
-				cols="6"
-				class="result__col mr-auto"
+			</v-row>
+			<v-row
+				v-for="(arr, key) in obj.value"
+				:key="key"
+				class="result__col"
 			>
-				{{ obj.value || 'Нет совпадений' }}
-			</v-col>
-		</v-row>
+				{{ arr || '-' }}
+			</v-row>
+		</v-col>
 	</v-container>
 	<div
 		class="tooltip__result"
@@ -94,7 +93,7 @@ export default {
 				},
 				{
 					title: 'City(Город)',
-					value: this.getResult.cityOrRegion,
+					value: this.getResult.city,
 				},
 				{
 					title: 'Street(Улица)',
@@ -139,7 +138,7 @@ export default {
 
 .search__form {
 	margin-top: 10%;
-	margin-bottom: 5%;
+	margin-bottom: 2%;
 }
 
 .search__input {
@@ -174,7 +173,7 @@ export default {
 .tooltip__btn {
 	position: relative;
 	font-size: 22px;
-	width: 40%;
+	width: 50%;
 	height: 0;
 	top: 0.5rem;
 	left: 1%;
@@ -198,18 +197,19 @@ export default {
 }
 
 .search__result {
+	display: flex;
 	position: relative;
 	font-size: 18px;
-	width: 30%;
+	width: 80%;
 }
 
 .result__col {
-	height: 40px;
+	min-width: max-content;
+	height: 47px;
 	background: #9cd9dc;
 	border-top: 1px solid;
 	border-bottom: 1px solid;
 	padding: 10px 0 0 10px;
-	margin-bottom: 10px;
 }
 
 .tooltip__result {
@@ -218,7 +218,7 @@ export default {
 	width: 50%;
 	height: 0;
 	top: 0.5rem;
-	left: 35%;
+	left: 26%;
 
 	img {
 		position: relative;

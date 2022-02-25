@@ -5,15 +5,13 @@ export default {
         async requestAddress(context, query) {
             try {
                 const resultReq = await api({
-                    data: JSON.stringify([query]),
+                    data: JSON.stringify({query: query}),
                 })
-                context.commit('updateResult', resultReq.data[0])
+                context.commit('updateResult', resultReq.data.suggestions)
             } catch (error) {
                 console.log(error)
                 context.commit('clearResult')
-
             }
-
         }
     },
     mutations: {
@@ -27,17 +25,22 @@ export default {
         }
     },
     state: {
-        result: {},
-        requestCompleted: false
+        result: {}, requestCompleted: false
     },
     getters: {
         getResult(state) {
-            return {
-                postal_code: state.result.postal_code,
-                cityOrRegion: state.result.city || state.result.region,
-                street: state.result.street,
-                house: state.result.house,
-                flat: state.result.flat,
+            if (state.result) {
+                const result = {
+                    postal_code: [], city: [], street: [], house: [], flat: []
+                }
+                for (let i = 0; i < state.result.length; i++) {
+                    result.postal_code.push(state.result[i].data.postal_code)
+                    result.city.push(state.result[i].data.city || state.result[i].data.settlement_with_type)
+                    result.street.push(state.result[i].data.street)
+                    result.house.push(state.result[i].data.house)
+                    result.flat.push(state.result[i].data.flat)
+                }
+                return result
             }
         },
         getRequestCompleted(state) {
